@@ -29,12 +29,17 @@ To delete perticular resource say ec2 instance: Removed the EC2 instance code fr
 1. Create Free tier AWS instance.
 2. Download and install Terraform.
 3. Retrive the AWS access key and success key from console. 
-   3.1 : Login into AWS Console.
-   3.2 : Click on AWS username display on top left corner, besides search bar.
-   3.3 : Click "My Security Credentials".
-   3.4 : Click on "Access keys (access key ID and secret access key". 
-   3.5 : Click "Create New Access Key"
-   3.6 : Note down the newly created access key and secret key somewhere safe. It only shows one time.
+>> Login into AWS Console.
+
+>> Click on AWS username display on top left corner, besides search bar.
+
+>> Click "My Security Credentials".
+
+>> Click on "Access keys (access key ID and secret access key". 
+
+>> Click "Create New Access Key"
+
+>> Note down the newly created access key and secret key somewhere safe. It only shows one time.
 
 
 ### How to run Project1?
