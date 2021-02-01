@@ -1,7 +1,7 @@
 ## Terraform
 This technology is used for Iac (Infrastructure as code). Using this we can create resources on any cloud-plateform on the fly only by adding few configuration and running single command.
 
-Download the Terraform from [here|https://www.terraform.io/downloads.html]
+Download the Terraform from [here](https://www.terraform.io/downloads.html)
 
 ### Terraform commands
 
@@ -28,7 +28,10 @@ To delete perticular resource say ec2 instance: Removed the EC2 instance code fr
 ### Pre-requisites 
 1. Create Free tier AWS instance.
 2. Download and install Terraform.
-3. Retrive the AWS access key and success key from console. 
+3. Retrieve the AWS access key and success key from console. 
+
+### How to retrieve AWS access key and success key?
+
 >> Login into AWS Console.
 
 >> Click on AWS username display on top left corner, besides search bar.
