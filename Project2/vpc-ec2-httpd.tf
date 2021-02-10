@@ -1,10 +1,11 @@
+# Provider information
 provider "aws" {
   region = "us-east-1"
   access_key = "AKIAJZHKPHX2Z576PDTA"
   secret_key = "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"
 }
 
-#1 Create vpc
+#1 Create VPC
 resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -36,7 +37,7 @@ resource "aws_route_table" "prod-route-table" {
   }
 }
 
-#4 Create subnet.
+#4 Create a Subnet
 resource "aws_subnet" "subnet-1" {
   vpc_id = aws_vpc.prod-vpc.id
   cidr_block = "10.0.1.0/24"
@@ -46,7 +47,7 @@ resource "aws_subnet" "subnet-1" {
   }
 }
 
-#5 Associate subnet with Route table.
+#5 Associate Subnet with Route table
 resource "aws_route_table_association" "a" {
   subnet_id      = aws_subnet.subnet-1.id
   route_table_id = aws_route_table.prod-route-table.id
@@ -94,7 +95,7 @@ resource "aws_security_group" "allow_web" {
   }
 }
 
-#7 Create a network interface with an ip in the subnet that was created in step4.
+#7 Create a network interface with an ip in the subnet that was created in step#4.
 resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.subnet-1.id
   private_ips     = ["10.0.1.50"]
@@ -109,7 +110,7 @@ resource "aws_eip" "one" {
   depends_on = [aws_internet_gateway.gw]
 }
 
-#9 Create Ubuntu server and install/enable apache2
+#9 Create Ubuntu server and install/enable Apache2.
 resource "aws_instance" "web-server-instance" {
     ami = "ami-00ddb0e5626798373"
     instance_type = "t2.micro"
