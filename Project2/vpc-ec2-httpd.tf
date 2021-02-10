@@ -1,7 +1,7 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "***********"
-  secret_key = "***********"
+  access_key = "AKIAJZHKPHX2Z576PDTA"
+  secret_key = "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"
 }
 
 #1 Create vpc
@@ -35,8 +35,8 @@ resource "aws_route_table" "prod-route-table" {
     Name = "prod"
   }
 }
-#4 Create subnet
 
+#4 Create subnet.
 resource "aws_subnet" "subnet-1" {
   vpc_id = aws_vpc.prod-vpc.id
   cidr_block = "10.0.1.0/24"
@@ -46,15 +46,13 @@ resource "aws_subnet" "subnet-1" {
   }
 }
 
-#5 Associate subnet with Route table
-
+#5 Associate subnet with Route table.
 resource "aws_route_table_association" "a" {
   subnet_id      = aws_subnet.subnet-1.id
   route_table_id = aws_route_table.prod-route-table.id
 }
 
 #6 Create Security Group to allow port 22,80,443
-
 resource "aws_security_group" "allow_web" {
   name        = "allow_web_traffic"
   description = "Allow web traffic"
@@ -95,16 +93,15 @@ resource "aws_security_group" "allow_web" {
     Name = "allow_web"
   }
 }
-#7 Create a network interface with an ip in the subnet that was created in step4
 
+#7 Create a network interface with an ip in the subnet that was created in step4.
 resource "aws_network_interface" "web-server-nic" {
   subnet_id       = aws_subnet.subnet-1.id
   private_ips     = ["10.0.1.50"]
   security_groups = [aws_security_group.allow_web.id]
 }
 
-#8 Assign an elastic IP to the network interface created in step 7
-
+#8 Assign an elastic IP to the network interface created in step 7.
 resource "aws_eip" "one" {
   vpc                       = true
   network_interface         = aws_network_interface.web-server-nic.id
@@ -135,4 +132,3 @@ resource "aws_instance" "web-server-instance" {
         Name ="Web-server"
     }
 }
-
